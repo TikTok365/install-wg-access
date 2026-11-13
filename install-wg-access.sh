@@ -25,7 +25,7 @@ DATA_DIR="${WG_DATA_DIR:-/opt/wg-access-server}"
 WEB_PORT="${WG_WEB_PORT:-8000}"
 WG_PORT="${WG_WIREGUARD_PORT:-51820}"
 ADMIN_USERNAME="${WG_ADMIN_USERNAME:-admin}"
-ADMIN_PASSWORD="${WG_ADMIN_PASSWORD:-As100200.com}"
+ADMIN_PASSWORD="${WG_ADMIN_PASSWORD:-admin123}"
 EXTERNAL_HOST="${WG_EXTERNAL_HOST:-}"
 
 PASSWORD_FROM_CLI=0
@@ -68,7 +68,7 @@ usage() {
 用法: sudo bash install-wg-access.sh [选项]
 
 选项:
-  -p, --password <密码>      管理面板密码（默认 As100200.com；已有安装会复用旧密码）
+  -p, --password <密码>      管理面板密码（默认 admin123；已有安装会复用旧密码）
       --user <用户名>        管理面板用户名（默认 admin）
       --web-port <端口>      Web UI 对外端口（默认 8000）
       --wg-port <端口>       WireGuard 对外 UDP 端口（默认 51820）
@@ -500,7 +500,7 @@ print_summary() {
   printf '  常用命令     : docker logs -f %s | docker restart %s | docker exec -it %s wg show\n' \
     "$CONTAINER_NAME" "$CONTAINER_NAME" "$CONTAINER_NAME"
   printf '%s==========================================%s\n' "$C_GREEN" "$C_RESET"
-  if [[ "$ADMIN_PASSWORD" == "As100200.com" ]]; then
+  if [[ "$ADMIN_PASSWORD" == "admin123" ]]; then
     warn "当前使用的是脚本内置默认密码，暴露在公网上风险很高，建议改成自己的："
     printf '    sudo bash %s --password '"'"'你的新密码'"'"' --recreate\n' "$SCRIPT_NAME"
   fi

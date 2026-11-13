@@ -8,7 +8,7 @@
 curl -fsSL https://raw.githubusercontent.com/TikTok365/install-wg-access/main/install-wg-access.sh | sudo bash
 ```
 
-不带参数时：面板密码 `As100200.com`，Web 面板 `8000/tcp`，WireGuard `51820/udp`，服务器地址自动探测公网 IP。
+不带参数时：面板密码 `admin123`，Web 面板 `8000/tcp`，WireGuard `51820/udp`，服务器地址自动探测公网 IP。
 
 > 默认密码只是为了能立刻登录，装完请换掉。建议按下面的方式带参数调用。
 
@@ -46,7 +46,7 @@ sudo bash install-wg-access.sh --uninstall --purge  # 全部删除
 
 | 参数 | 说明 | 默认 |
 |---|---|---|
-| `-p, --password <密码>` | 面板密码 | `As100200.com` |
+| `-p, --password <密码>` | 面板密码 | `admin123` |
 | `--user <用户名>` | 面板用户名 | `admin` |
 | `--web-port <端口>` | Web 面板端口 | `8000` |
 | `--wg-port <端口>` | WireGuard UDP 端口 | `51820` |
