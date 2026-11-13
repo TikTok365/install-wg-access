@@ -13,6 +13,7 @@ set -Eeuo pipefail
 
 SCRIPT_NAME="install-wg-access.sh"
 SCRIPT_VERSION="1.0.0"
+REPO_RAW_URL="https://raw.githubusercontent.com/TikTok365/install-wg-access/main/${SCRIPT_NAME}"
 
 # ---- 默认配置（均可用同名环境变量或命令行参数覆盖）-------------------------
 WG_IMAGE_REPO="${WG_IMAGE_REPO:-place1/wg-access-server}"
@@ -134,6 +135,10 @@ ensure_root() {
   if [[ -f "$0" ]] && command -v sudo >/dev/null 2>&1; then
     info "需要 root 权限，自动切换到 sudo 重新执行…"
     exec sudo -E -- bash "$0" "$@"
+  fi
+  # 管道执行时 $0 是 bash/sh 本身，没法 sudo 重跑同一份内容
+  if [[ ! -f "$0" ]]; then
+    die "需要 root：请改成 curl -fsSL ${REPO_RAW_URL} | sudo bash"
   fi
   die "请用 root 运行：sudo bash $SCRIPT_NAME"
 }
